@@ -1,0 +1,168 @@
+package new_day;
+import java.util.*;
+
+interface PaymentMethod
+{
+	public void pay(double amount);
+	public void refund(double amount);
+}
+
+
+class CreditCardPayment implements PaymentMethod
+{
+    private double amount;
+//    CreditCardPayment(double amount)
+//    {
+//    	this.amount=amount;
+//    }
+    
+    @Override
+	public void pay(double amount)
+	{
+    	this.amount=amount;
+		System.out.println("Paid Rs "+ amount+" using Credit Card");
+	}
+	
+    @Override
+	public void refund(double amount)
+	{
+    	this.amount=amount;
+		System.out.println("Refunded Rs "+amount+ " to Credit Card");
+	}
+}
+
+
+class NetBankingPayment implements PaymentMethod
+{
+	private double amount;
+//	NetBankingPayment(double amount)
+//    {
+//    	this.amount=amount;
+//    }
+    
+	 @Override
+		public void pay(double amount)
+		{
+		    this.amount=amount;
+			System.out.println("Paid Rs "+ amount+" using NetBanking");
+		}
+		
+	    @Override
+		public void refund(double amount)
+		{
+	    	this.amount=amount;
+			System.out.println("Refunded Rs "+amount+ " to NetBanking");
+		}
+}
+
+class UPIPayment implements PaymentMethod
+{
+	private double amount;
+//	UPIPayment(double amount)
+//    {
+//    	this.amount=amount;
+//    }
+    
+	 @Override
+		public void pay(double amount)
+		{
+		    this.amount=amount;
+			System.out.println("Paid Rs "+ amount+" using UPIPayment");
+		}
+		
+	    @Override
+		public void refund(double amount)
+		{
+	    	this.amount=amount;
+			System.out.println("Refunded Rs "+amount+ " to UPIPayment");
+		}
+}
+
+
+
+
+public class Billing {
+	public void credit_card()
+	{
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Enter the number of amount you wanted to pay");
+		double amount;
+		amount=scanner.nextDouble();
+		double refunded_amount=amount-((amount/100.0)*50);
+		CreditCardPayment c= new CreditCardPayment();
+		c.pay(amount);
+		System.out.println("Do you want a refund? type 1 if you want and type 0 if you dont want");
+		int num;
+		num=scanner.nextInt();
+		if(num==1)
+		c.refund(refunded_amount);
+		else
+			System.out.println("Thankyou for your paymant!");
+		scanner.close();
+	}
+	
+	public void UPI()
+	{
+		Scanner scanner=new Scanner(Sytem.in);
+		System.out.println("Enter the number of amount you wanted to pay");
+		double amount;
+		amount=scanner.nextDouble();
+		double refunded_amount=amount-((amount/100.0)*50);
+		UPIPayment c= new UPIPayment();
+		c.pay(amount);
+		System.out.println("Do you want a refund? type 1 if you want and type 0 if you dont want");
+		int num;
+		num=scanner.nextInt();
+		if(num==1)
+		c.refund(refunded_amount);
+		else
+			System.out.println("Thankyou for your paymant!");
+	    scanner.close();
+	}
+	
+	public void Net_banking()
+	{
+		Scanner scanner=new Scanner(System.in);
+		System.out.println("Enter the number of amount you wanted to pay");
+		double amount;
+		amount=scanner.nextDouble();
+		double refunded_amount=amount-((amount/100.0)*50);
+		NetBankingPayment c= new NetBankingPayment();
+		c.pay(amount);
+		System.out.println("Do you want a refund? type 1 if you want and type 0 if you dont want");
+		int num;
+		num=scanner.nextInt();
+		if(num==1)
+		c.refund(refunded_amount);
+		else
+			System.out.println("Thankyou for your paymant!");
+		scanner.close();
+	}
+public static void main(String args[])
+{
+	
+	Scanner scanner=new Scanner(System.in);
+	Billing b=new Billing();
+	System.out.println("Secure Payments platforms");
+	System.out.println("Chose one to move further");
+	System.out.println("1. By Credit Card");
+	System.out.println("2. By UPI");
+	System.out.println("3. By Net Banking");
+	
+	int choice;
+	choice=scanner.nextInt();
+	switch(choice)
+	{
+	case 1:
+		b.credit_card();
+		break;
+	case 2:
+		b.UPI();
+		break;
+	case 3:
+		b.Net_banking();
+		break;
+	}
+	scanner.close();
+}
+}
